@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Container, Row, Col } from 'react-bootstrap'
 
 
 export default class EmployeeEdit extends React.Component {
@@ -61,24 +61,40 @@ export default class EmployeeEdit extends React.Component {
                 <Card.Header as='h5'>Edit {this.state.employee.name}</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <form name='employeeUpdate' onSubmit={this.handleSubmit}>
-                            ID:<br/>
-                            <input type='text' name='id' readOnly='readOnly' defaultValue={this.state.employee._id} /><br/>
-                            Name:<br/>
-                            <input type='text' name='name' defaultValue={this.state.employee.name} /><br/>
-                            Extension:<br/>
-                            <input type='text' name='extension' defaultValue={this.state.employee.extension} /><br/>
-                            Email:<br/>
-                            <input type='text' name='email' defaultValue={this.state.employee.email} /><br/>
-                            Title:<br/>
-                            <input type='text' name='title' defaultValue={this.state.employee.title}/><br/>
-                            Date Hired:<br/>
-                            <input type='text' name='dateHired' readOnly='readOnly' defaultValue={this.state.employee.dateHired}/><br/>
-                            Currently Employed?<br/>
-                            <input type='checkbox' name='currentlyEmployed' defaultChecked={this.state.employee.currentlyEmployed} /><br/>
-                            <Button type='submit' variant='primary' size='sm' className='mt-3'>Update Employee</Button>
-                            <p id='message'></p>
-                        </form>
+                        <Container fluid>
+                            <form name='employeeUpdate' onSubmit={this.handleSubmit}>
+                                <Row>
+                                    <Col md={2}>ID:</Col>
+                                    <Col md='auto'><input type='text' name='id' readOnly='readOnly' defaultValue={this.state.employee._id} /></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Name:</Col>
+                                    <Col md='auto'><input type='text' name='name' defaultValue={this.state.employee.name} /></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Extension:</Col>
+                                    <Col md='auto'><input type='text' name='extension' defaultValue={this.state.employee.extension} /></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Email:</Col>
+                                    <Col md='auto'><input type='text' name='email' defaultValue={this.state.employee.email} /></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Title:</Col>
+                                    <Col md='auto'><input type='text' name='title' defaultValue={this.state.employee.title}/></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Date Hired:</Col>
+                                    <Col md='auto'><input type='text' name='dateHired' readOnly='readOnly' defaultValue={this.state.employee.dateHired}/></Col>
+                                </Row>
+                                <Row>
+                                    <Col md={2}>Currently Employed</Col>
+                                    <Col md='auto'><input type='checkbox' name='currentlyEmployed' defaultChecked={this.state.employee.currentlyEmployed} /></Col>
+                                </Row>
+                                <Button type='submit' variant='primary' size='sm' className='mt-3'>Update Employee</Button>
+                                <p id='message'></p>
+                            </form>
+                        </Container>
                     </Card.Text>
                 </Card.Body>
             </Card>
