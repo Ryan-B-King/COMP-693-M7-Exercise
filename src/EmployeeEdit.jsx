@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 
 
 export default class EmployeeEdit extends React.Component {
@@ -57,25 +57,31 @@ export default class EmployeeEdit extends React.Component {
 
     render() {
         return (
-            <form name='employeeUpdate' onSubmit={this.handleSubmit}>
-                <h1>Edit {this.state.employee.name}</h1>
-                ID:<br/>
-                <input type='text' name='id' readOnly='readOnly' defaultValue={this.state.employee._id} /><br/>
-                Name:<br/>
-                <input type='text' name='name' defaultValue={this.state.employee.name} /><br/>
-                Extension:<br/>
-                <input type='text' name='extension' defaultValue={this.state.employee.extension} /><br/>
-                Email:<br/>
-                <input type='text' name='email' defaultValue={this.state.employee.email} /><br/>
-                Title:<br/>
-                <input type='text' name='title' defaultValue={this.state.employee.title}/><br/>
-                Date Hired:<br/>
-                <input type='text' name='dateHired' readOnly='readOnly' defaultValue={this.state.employee.dateHired}/><br/>
-                Currently Employed?<br/>
-                <input type='checkbox' name='currentlyEmployed' defaultChecked={this.state.employee.currentlyEmployed} /><br/>
-                <Button type='submit' variant='primary' size='sm' className='mt-3'>Update Employee</Button>
-                <p id='message'></p>
-            </form>
+            <Card>
+                <Card.Header as='h5'>Edit {this.state.employee.name}</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <form name='employeeUpdate' onSubmit={this.handleSubmit}>
+                            ID:<br/>
+                            <input type='text' name='id' readOnly='readOnly' defaultValue={this.state.employee._id} /><br/>
+                            Name:<br/>
+                            <input type='text' name='name' defaultValue={this.state.employee.name} /><br/>
+                            Extension:<br/>
+                            <input type='text' name='extension' defaultValue={this.state.employee.extension} /><br/>
+                            Email:<br/>
+                            <input type='text' name='email' defaultValue={this.state.employee.email} /><br/>
+                            Title:<br/>
+                            <input type='text' name='title' defaultValue={this.state.employee.title}/><br/>
+                            Date Hired:<br/>
+                            <input type='text' name='dateHired' readOnly='readOnly' defaultValue={this.state.employee.dateHired}/><br/>
+                            Currently Employed?<br/>
+                            <input type='checkbox' name='currentlyEmployed' defaultChecked={this.state.employee.currentlyEmployed} /><br/>
+                            <Button type='submit' variant='primary' size='sm' className='mt-3'>Update Employee</Button>
+                            <p id='message'></p>
+                        </form>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
         )
     }
     

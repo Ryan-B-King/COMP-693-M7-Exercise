@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Button, Table } from 'react-bootstrap'
+import { Badge, Button, Table, Card } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import EmployeeFilter from './EmployeeFilter.jsx'
 import EmployeeAdd from './EmployeeAdd.jsx'
@@ -23,22 +23,29 @@ function EmployeeTable(props)  {
             deleteEmployee={props.deleteEmployee} />)
     
     return (
-        <Table striped size='sm'>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Extension</th>
-                    <th>Email</th>
-                    <th>Title</th>
-                    <th>Date Hired</th>
-                    <th>Currently Employed?</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {employeeRows}
-            </tbody>
-        </Table>
+        <Card>
+            <Card.Header as='h5'>All Employees <Badge bg='secondary'>{employeeRows.length}</Badge></Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    <Table striped size='sm'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Extension</th>
+                                <th>Email</th>
+                                <th>Title</th>
+                                <th>Date Hired</th>
+                                <th>Currently Employed?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {employeeRows}
+                        </tbody>
+                    </Table>
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 
@@ -72,7 +79,6 @@ export default class EmployeeList extends React.Component {
         fetch('/api/employees')
         .then(response => response.json())
         .then(data => {
-            console.log('Total count of employees:', data.count)
             data.employees.forEach(employee => {
                 employee.dateHired = new Date(employee.dateHired)
             })
@@ -110,9 +116,7 @@ export default class EmployeeList extends React.Component {
         return(
             <React.Fragment>
                     <EmployeeFilter/>
-                    <hr/>
                     <EmployeeTable employees={this.state.employees} deleteEmployee={this.deleteEmployee} />
-                    <hr/>
                     <EmployeeAdd createEmployee = {this.createEmployee} />
             </React.Fragment>
         )

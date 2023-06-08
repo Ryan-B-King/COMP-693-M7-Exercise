@@ -1,10 +1,23 @@
 import React from 'react'
-// import { defaultMethod } from 'react-router-dom/dist/dom'
+import { Card } from 'react-bootstrap'
+
 
 export default function EmployeeReport() {
     return (
-        <div>
-            This is a placeholder for the employee report.     
-        </div>
+        <Card>
+            <Card.Header as='h5'>Filter</Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    This is a placeholder for the employee reports.    
+                </Card.Text>
+            </Card.Body>
+        </Card>
+
+
+
+
+
+             
+
     )
 }
