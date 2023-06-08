@@ -1,11 +1,16 @@
 import React from 'react'
-import { Button, Card, Container, Row, Col } from 'react-bootstrap'
+import { Button, Card, Container, Row, Col, Alert } from 'react-bootstrap'
 
 
 export default class EmployeeEdit extends React.Component {
     constructor(){
         super()
-        this.state = { employee: [] }
+        this.state = { 
+            employee: [],
+            alertVisible: false,
+            alertColor: 'success',
+            alertMessage: '',
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -51,7 +56,10 @@ export default class EmployeeEdit extends React.Component {
         })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('message').innerHTML = data.msg
+            this.setState({
+                alertVisible: true,
+                alertMessage: data.msg,
+            })
         })
     }
 
@@ -91,8 +99,12 @@ export default class EmployeeEdit extends React.Component {
                                     <Col md={2}>Currently Employed</Col>
                                     <Col md='auto'><input type='checkbox' name='currentlyEmployed' defaultChecked={this.state.employee.currentlyEmployed} /></Col>
                                 </Row>
-                                <Button type='submit' variant='primary' size='sm' className='mt-3'>Update Employee</Button>
-                                <p id='message'></p>
+                                <Button type='submit' variant='primary' size='sm' className='my-3'>Update Employee</Button>
+                                <Alert 
+                                    variant={this.state.alertColor} 
+                                    show={this.state.alertVisible} 
+                                    onClose={() => this.setState({alertVisible: false})} 
+                                    dismissible>{this.state.alertMessage}</Alert>
                             </form>
                         </Container>
                     </Card.Text>
