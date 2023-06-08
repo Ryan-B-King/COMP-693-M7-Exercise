@@ -1,8 +1,10 @@
 import React from 'react'
+import { Badge, Button, Table } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import EmployeeFilter from './EmployeeFilter.jsx'
 import EmployeeAdd from './EmployeeAdd.jsx'
 import { Link } from 'react-router-dom'
+
 
 function EmployeeTable(props)  {
     // GET THE URL
@@ -21,10 +23,9 @@ function EmployeeTable(props)  {
             deleteEmployee={props.deleteEmployee} />)
     
     return (
-        <table className = "bordered-table">
+        <Table striped size='sm'>
             <thead>
                 <tr>
-                    <th>Action</th>
                     <th>Name</th>
                     <th>Extension</th>
                     <th>Email</th>
@@ -37,7 +38,7 @@ function EmployeeTable(props)  {
             <tbody>
                 {employeeRows}
             </tbody>
-        </table>
+        </Table>
     )
 }
 
@@ -47,14 +48,13 @@ function EmployeeRow(props) {
     }
     return (
         <tr>
-            <td><Link to={`/edit/${props.employee._id}`}>Edit</Link></td>
-            <td>{props.employee.name}</td>
+            <td><Link to={`/edit/${props.employee._id}`}>{props.employee.name}</Link></td>
             <td>{props.employee.extension}</td>
             <td>{props.employee.email}</td>
             <td>{props.employee.title}</td>
             <td>{props.employee.dateHired.toDateString()}</td>
             <td>{props.employee.currentlyEmployed ? 'Yes' : 'No'}</td>
-            <td><button onClick={onDeleteClick}>DELETE</button></td>
+            <td><Button variant='danger' size='sm' onClick={onDeleteClick}>X</Button></td>
         </tr>
     )
 }
@@ -109,7 +109,7 @@ export default class EmployeeList extends React.Component {
     render(){
         return(
             <React.Fragment>
-                    <h1>Employee Management Application</h1>
+                    <h1><Badge bg='secondary'>Employee Management Application</Badge></h1>
                     <EmployeeFilter/>
                     <hr/>
                     <EmployeeTable employees={this.state.employees} deleteEmployee={this.deleteEmployee} />
